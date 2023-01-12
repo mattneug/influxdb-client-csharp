@@ -369,6 +369,16 @@ namespace InfluxDB.Client
             _apiClient.RestClient.Dispose();
         }
 
+        public DashboardApi GetDashboardApi()
+        {
+            var service = new DashboardsService((Configuration)_apiClient.Configuration) 
+            { 
+                ExceptionFactory = _exceptionFactory 
+            };
+
+            return new DashboardApi(_options, service);
+        }
+
         /// <summary>
         /// Get the Query client.
         /// </summary>
